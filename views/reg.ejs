@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body bgcolor="black">
+
+    <form id="registrationForm" action="/reg" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" value="@nuP1234" id="password" name="pass" required><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" value="@nuP1234" id="confirmPassword" name="cnfpass" required><br><br>
+
+        <button type="submit" id="submitButton">Submit</button>
+    </form>
+    <br>
+
+    already have account then <a href="/login">login</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registrationForm');
+            const submitButton = document.getElementById('submitButton');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+            function validateForm(event) {
+                if (!emailRegex.test(emailInput.value)) {
+                    alert('Invalid email format');
+                    emailInput.focus();
+                    event.preventDefault();
+                    return;
+                }
+
+                if (!passwordRegex.test(passwordInput.value)) {
+                    alert('Password must contain uppercase, lowercase, number, and be 6+ characters');
+                    passwordInput.focus();
+                    event.preventDefault();
+                    return;
+                }
+
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    alert('Passwords do not match');
+                    confirmPasswordInput.focus();
+                    event.preventDefault();
+                    return;
+                }
+            }
+
+            form.addEventListener('submit', validateForm);
+        });
+        history.pushState(null, null, location.href);
+            window.onpopstate = function () {
+                history.go(1);
+            };
+    </script>
+
+</body>
+
+</html>

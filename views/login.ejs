@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body bgcolor="black">
+    <form action="/login" method="post">
+        <label for="email">email</label>
+        <input type="email" name="email" id="email">
+        <label for="password">password</label>
+        <input type="password" value="@nuP1234" name="pass" id="password">
+        <button type="submit">Submit</button>
+    </form>
+    dont have account then <a href="/reg">Register</a>
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+</body>
+</html>
