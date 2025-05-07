@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 mongoose.pluralize(null);
-mongoose.connect("mongodb://localhost:27017/new_sec_2");
+mongoose.connect("mongodb+srv://anupbute015370:GCkUFFBYcd9GJKKr@new-sec-2.9fjrbwu.mongodb.net/");
 
 let user = mongoose.Schema({
     username: String,
@@ -78,7 +78,7 @@ app.post("/reg", async (req, res) => {
     let ak = await new_user.create({ username, email, pass: hash });
     let bk = await new_sec.create({ sec: "null", email });
     res.redirect("/login")
-});
+}); 
 
 app.get("/sec/:mail", (req, res) => {
     let mail = req.params.mail;
