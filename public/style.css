@@ -37,3 +37,7 @@ body{
     justify-content: center;
     padding: 00 50px;
 }
+
+.red_class{
+    color: red;
+}

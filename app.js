@@ -26,11 +26,8 @@ app.use((req, res, next) => {
     res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, private");
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
-    next();
+    next(); 
 });
-// GCkUFFBYcd9GJKKr
-// anupbute015370
-
 mongoose.pluralize(null);
 mongoose.connect("mongodb+srv://anupbute:anupbute1@secrets.2pflmb5.mongodb.net/?retryWrites=true&w=majority&appName=secrets2");
 
