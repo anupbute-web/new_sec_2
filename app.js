@@ -28,9 +28,11 @@ app.use((req, res, next) => {
     res.setHeader("Expires", "0");
     next();
 });
+// GCkUFFBYcd9GJKKr
+// anupbute015370
 
 mongoose.pluralize(null);
-mongoose.connect("mongodb+srv://anupbute015370:GCkUFFBYcd9GJKKr@new-sec-2.9fjrbwu.mongodb.net/");
+mongoose.connect("mongodb+srv://anupbute:anupbute1@secrets.2pflmb5.mongodb.net/?retryWrites=true&w=majority&appName=secrets2");
 
 let user = mongoose.Schema({
     username: String,
