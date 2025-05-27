@@ -23,7 +23,7 @@ body{
 }
 
 .my_btn{
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .secrets{
@@ -40,4 +40,10 @@ body{
 
 .red_class{
     color: red;
+}
+
+.invalid-feedback {
+    display: block;
+    font-size: 0.875em;
+    color: #dc3545;
 }

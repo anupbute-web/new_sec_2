@@ -31,14 +31,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control my_btn" id="password" name="pass" required>
+                                <input type="password" class="form-control" id="password" name="pass" required>
+                                <div id="invalid-feedback1" class="invalid-feedback">
+                                    Password must contain at least one number, one lowercase letter, one uppercase
+                                    letter, and be at least 6 characters long.
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password:</label>
-                                <input type="password" class="form-control my_btn" id="confirmPassword" name="cnfpass"
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" name="cnfpass"
                                     required>
+                                <div id="invalid-feedback2" class="invalid-feedback">
+                                    Passwords do not match.
+                                </div>
                             </div>
-                            <button type="submit" id="submitButton" class="btn btn-dark my_btn">Register</button>
+                            <button type="submit" id="submitButton" disabled
+                                class="btn btn-dark my_btn" style="margin-top: 20px;">Register</button>
+                            <button type="submit" style="display: none;" id="submitButton1"
+                                class="btn btn-dark my_btn" >Register</button>
                         </form>
                         Already have an account? <a href="/login">Login</a>
                     </div>
@@ -46,6 +56,58 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registrationForm');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            let pass_good = document.getElementById("invalid-feedback1");
+            let pass_match = document.getElementById("invalid-feedback2");
+            pass_good.style.display = "none";
+            pass_match.style.display = "none";
+            let a = 0;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+            password.addEventListener('input', function () {
+                if (!passwordRegex.test(password.value)) {
+                    pass_good.style.display = "block";
+                    password.classList.add('is-invalid');
+                    password.classList.remove('is-valid');
+                } else {
+                    a = 1
+                    pass_good.style.display = "none";
+                    password.classList.add('is-valid');
+                    password.classList.remove('is-invalid');
+                }
+            });
+
+            confirmPassword.addEventListener('input', function () {
+                if (confirmPassword.value !== password.value) {
+                    pass_match.style.display = "block";
+                    confirmPassword.classList.add('is-invalid');
+                    confirmPassword.classList.remove('is-valid');
+                } else {
+                    if (a == 1) {
+                        pass_match.style.display = "none"
+                        document.getElementById("submitButton").style.display = "none";
+                        document.getElementById("submitButton1").style.display = "block";
+                        document.getElementById("submitButton1").style.marginTop = "20px";
+                        confirmPassword.classList.add('is-valid');
+                        confirmPassword.classList.remove('is-invalid');
+                    }
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    form.reportValidity();
+                }
+            });
+        });
+
+    </script>
 
 
     <!-- <script>
@@ -91,17 +153,22 @@
             };
         </script> -->
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('registrationForm');
             const pass = document.getElementById('password');
             const cnfpass = document.getElementById('confirmPassword');
+            let pass_good=document.getElementById("invalid-feedback1");
+            let pass_match=document.getElementById("invalid-feedback2");
+            pass_good.style.display="none";
+            pass_match.style.display="none";
 
             const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
             pass.addEventListener('input', function () {
                 if (!passwordRegex.test(pass.value)) {
-                    pass.setCustomValidity('Password must contain at least one number, one lowercase letter, one uppercase letter, and be at least 6 characters long.');
+                    // pass.setCustomValidity('Password must contain at least one number, one lowercase letter, one uppercase letter, and be at least 6 characters long.');
+                    pass_good.style.display="block";
                 } else {
                     pass.setCustomValidity('');
                 }
@@ -109,7 +176,8 @@
 
             cnfpass.addEventListener('input', function () {
                 if (cnfpass.value !== pass.value) {
-                    cnfpass.setCustomValidity('Passwords do not match.');
+                    // cnfpass.setCustomValidity('Passwords do not match.');
+                    pass_match.style.display="block";
                 } else {
                     cnfpass.setCustomValidity('');
                 }
@@ -122,7 +190,7 @@
                 }
             });
         });
-    </script>
+    </script> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
