@@ -32,6 +32,8 @@
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="pass" required>
+                                <input type="checkbox" onclick="check_clicked(1,'password')" id="check1" class="check">
+                                <label for="check1">Show Password</label>
                                 <div id="invalid-feedback1" class="invalid-feedback">
                                     Password must contain at least one number, one lowercase letter, one uppercase
                                     letter, and be at least 6 characters long.
@@ -41,14 +43,17 @@
                                 <label for="confirmPassword">Confirm Password</label>
                                 <input type="password" class="form-control" id="confirmPassword" name="cnfpass"
                                     required>
+                                <input type="checkbox" onclick="check_clicked(2,'confirmPassword')" id="check2"
+                                    class="check">
+                                <label for="check2">Show Password</label>
                                 <div id="invalid-feedback2" class="invalid-feedback">
                                     Passwords do not match.
                                 </div>
                             </div>
-                            <button type="submit" id="submitButton" disabled
-                                class="btn btn-dark my_btn" style="margin-top: 20px;">Register</button>
+                            <button type="submit" id="submitButton" disabled class="btn btn-dark my_btn"
+                                style="margin-top: 20px;">Register</button>
                             <button type="submit" style="display: none;" id="submitButton1"
-                                class="btn btn-dark my_btn" >Register</button>
+                                class="btn btn-dark my_btn">Register</button>
                         </form>
                         Already have an account? <a href="/login">Login</a>
                     </div>
@@ -58,6 +63,15 @@
     </div>
 
     <script>
+        function check_clicked(a, b) {
+                let check = document.getElementById(`check${a}`);
+                if (check.checked) {
+                    document.getElementById(b).type = "text";
+                }
+                else {
+                    document.getElementById(b).type = "password";
+                }
+            }
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('registrationForm');
             const password = document.getElementById('password');
@@ -68,6 +82,8 @@
             pass_match.style.display = "none";
             let a = 0;
             const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+            
 
             password.addEventListener('input', function () {
                 if (!passwordRegex.test(password.value)) {
