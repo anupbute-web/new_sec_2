@@ -23,7 +23,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control my_btn" name="pass" required>
+                                <input type="password" class="form-control my_btn" id="password" name="pass" required>
+                                <input type="checkbox" onclick="check_clicked(1,'password')" id="check1" class="check">
+                                <label for="check1">Show Password</label>
                             </div>
                             <button type="submit" id="login_btn" class="btn btn-dark my_btn">Login</button>
                         </form>
@@ -33,6 +35,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function check_clicked(a, b) {
+                let check = document.getElementById(`check${a}`);
+                if (check.checked) {
+                    document.getElementById(b).type = "text";
+                }
+                else {
+                    document.getElementById(b).type = "password";
+                }
+            }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
